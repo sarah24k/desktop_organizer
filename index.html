@@ -1,0 +1,113 @@
+<DOCTYPE! html>
+<html>
+<head>
+	<title>
+		Home Page Organizer
+	</title>
+<link rel="stylesheet" href="main.css">
+
+<script>
+	function myFunction(){
+
+	}
+	var date = new Date();
+	document.getElementById("date").innerHTML = date;
+</script>
+
+</head>
+<body>
+<header>
+	<h1>Hello There</h1>
+    <nav>
+	<ul>
+		<!--<li><a href="#experience" class="selected">Experience</a></li>-->
+	</ul>
+	</nav>
+</header>
+
+<div class="container">
+	<div class="first">first
+		<p id="date">sup</p>
+	</div>
+	<div class="second">
+			<div class="month">
+				<ul>
+				<li id="month" style="text-align:center">August
+      			<span id="year" style="font-size:18px">2016</span>
+      			</li>
+    			</ul>
+			</div>
+			<ul class="weekdays">
+				<li id="00">Mo</li>
+				<li id="01">Tu</li>
+ 				<li id="02">We</li>
+  				<li id="03">Th</li>
+				<li id="04">Fr</li>
+				<li id="05">Sa</li>
+				<li id="06">Su</li>
+			</ul>
+
+			<ul class="days">
+				<li id="0">1</li>
+				<li id="1">2</li>
+				<li id="2">3</li>
+				<li id="3">4</li>
+				<li id="4">5</li>
+				<li id="5">6</li>
+				<li id="6">7</li>
+			</ul>
+
+		<script>
+			var date = new Date();
+			document.getElementById("date").innerHTML = date + " and " + date.getDate();
+			document.getElementById("0").innerHTML = date.getDate()-3;
+			document.getElementById("1").innerHTML = date.getDate()-2;
+			document.getElementById("2").innerHTML = date.getDate()-1;
+			document.getElementById("3").innerHTML = date.getDate();
+			document.getElementById("4").innerHTML = date.getDate()+1;
+			document.getElementById("5").innerHTML = date.getDate()+2;
+			document.getElementById("6").innerHTML = date.getDate()+3;
+
+			var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Mon","Tue","Wed"];
+
+			if (date.getDay() == 0) {
+				document.getElementById("00").innerHTML = days[4];
+				document.getElementById("01").innerHTML = days[5];
+				document.getElementById("02").innerHTML = days[6];
+			} else if (date.getDay() == 1) {
+				document.getElementById("00").innerHTML = days[5];
+				document.getElementById("01").innerHTML = days[6];
+				document.getElementById("02").innerHTML = days[0];
+			} else if (date.getDay() == 2) {
+				document.getElementById("00").innerHTML = days[6];
+				document.getElementById("01").innerHTML = days[0];
+				document.getElementById("02").innerHTML = days[1];
+			} else {
+				document.getElementById("00").innerHTML = days[date.getDay()-3];
+				document.getElementById("01").innerHTML = days[date.getDay()-2];
+				document.getElementById("02").innerHTML = days[date.getDay()-1];
+			}
+			document.getElementById("03").innerHTML = days[date.getDay()];
+			document.getElementById("04").innerHTML = days[date.getDay()+1];
+			document.getElementById("05").innerHTML = days[date.getDay()+2];
+			document.getElementById("06").innerHTML = days[date.getDay()+3];
+
+			var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+			document.getElementById("month").innerHTML = months[date.getMonth()] + " " + date.getFullYear();
+		</script>
+	</div>
+	<div class="third">third
+
+	</div>
+	<div class="fourth">fourth
+
+	</div>
+	<div class="fifth">fifth
+
+    </div>
+    <div class="sixth">sixth
+
+	</div>
+</div>
+</body>
+</html>
