@@ -32,11 +32,10 @@
 	    // call this function again in 1000ms
 	    //setTimeout(updateClock, 1000);
 	}
-	setInterval(updateClock(), 1000);
 </script>
 
 </head>
-<body onload="updateClock(); setInterval('updateClock()',1000)">
+<body onload="updateClock(); setInterval('updateClock()',1000); changebackground();">
 <header>
 	<h1>Hello There</h1>
     <nav>
@@ -47,6 +46,7 @@
 </header>
 
 <div class="container">
+
 	<div class="first">first
 		<p id="date">sup</p>
 	</div>
@@ -130,22 +130,57 @@
 		</script>
 	</div>
 	<div class="third">third
-		<div id="res">weather</div>
-		<script>
-			function weather(o){
-			document.getElementById("res").innerHTML = "current temperature in Atlanta, Georgia is "+ o.query.results.channel.item.condition.temp + " degrees farenheit."
-			}
+		Change Background:
+		<script type="text/javascript">
+			function changebackground(){
+		    	var url = document.getElementById('bgchanger').value;
+		    	if (url == "") {
+		    		document.getElementsByTagName('body')[0].style.backgroundImage = "url('https://drscdn.500px.org/photo/103960697/m%3D2048/f14d55eb0b30b9abe4f433f42b670767')";
+		    	} else {
+		    		document.getElementsByTagName('body')[0].style.backgroundImage = "url('" + url + "')";
+		    	}
+			};
+
+			function setbackground() {
+				var urls = ["http://67.media.tumblr.com/d1eec41eae5d96c55c95d6214c9168c8/tumblr_ng93g0lPzV1ttq3fbo2_1280.jpg","http://i.imgur.com/BG02dnj.jpg","http://www.zayende.com/images/resimler/IMG-20151104-WA0005.jpg","https://iso.500px.com/wp-content/uploads/2015/10/thispop_cover.jpeg"];
+				var currentURL_long = document.getElementsByTagName('body')[0].style.backgroundImage;
+				var currentURL = currentURL_long.substring(5, currentURL_long.length-2);
+				if(currentURL == urls[0]) {
+					document.getElementsByTagName('body')[0].style.backgroundImage = "url(" + urls[1] + ")";
+				} else if (currentURL == urls[1]) {
+					document.getElementsByTagName('body')[0].style.backgroundImage = "url(" + urls[2] + ")";
+				} else if (currentURL == urls[2]) {
+					document.getElementsByTagName('body')[0].style.backgroundImage = "url(" + urls[3] + ")";
+				} else {
+					document.getElementsByTagName('body')[0].style.backgroundImage = "url(" + urls[0] + ")";
+				}
+			};
 		</script>
-		<script type="text/javascript" src="http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20location%3D%2230341%22&format=json&callback=weather"></script>
+
+		<input type="text" id="bgchanger" placeholder="Change Background Add URL" />
+		<input type="button" onclick="changebackground();" value="Change!" />
+		<input type="button" onclick="setbackground();" value="Toggle!" />
 	</div>
 	<div class="fourth">fourth
-
+		
 	</div>
 	<div class="fifth">fifth
-
+		<div id="myDIV" class="header">
+		<h2>My To Do List</h2>
+		<input type="text" id="myInput" placeholder="Title...">
+		<span onclick="newElement()" class="addBtn">Add</span>
+		</div>
+		<ul id="myUL">
+		  <li>Hit the gym</li>
+		  <li class="checked">Pay bills</li>
+		  <li>Meet George</li>
+		  <li>Buy eggs</li>
+		  <li>Read a book</li>
+		  <li>Organize office</li>
+		</ul>
     </div>
     <div class="sixth">sixth
-
+    	
 	</div>
 </div>
 </body>
