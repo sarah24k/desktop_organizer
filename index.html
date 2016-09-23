@@ -1,9 +1,9 @@
-<DOCTYPE! html>
 <html>
 <head>
 	<title>
 		Home Page Organizer
 	</title>
+
 <link rel="stylesheet" href="main.css">
 
 <script>
@@ -21,7 +21,6 @@
 	    } else {
 	    	minutes = time.getMinutes();
 	    }
-
 	    var timeOfDay = "AM";
 	    if (time.getHours() > 12) {
 	    	timeOfDay = "PM";
@@ -32,26 +31,52 @@
 	    // call this function again in 1000ms
 	    //setTimeout(updateClock, 1000);
 	}
+	setInterval(updateClock(), 1000);
 </script>
 
 </head>
-<body onload="updateClock(); setInterval('updateClock()',1000); changebackground();">
+
+
+<body>
 <header>
-	<h1>Hello There</h1>
-    <nav>
-	<ul>
-		<!--<li><a href="#experience" class="selected">Experience</a></li>-->
-	</ul>
-	</nav>
+
+        <nav>
+        <ul>
+        <!--<li><a href="#experience" class="selected">Experience</a></li>-->
+        </ul>
+        </nav>
 </header>
 
+ 
 <div class="container">
 
-	<div class="first">first
-		<p id="date">sup</p>
+	<div class="left-sidebar"><b>Favorites</b>
+		<ul>
+        	<li><a href="http://www.google.com" >Google</a></li>
+        	<li><a href="http://www.facebook.com">Facebook</a></li>
+        	<li><a href="http://learningsuite.byu.edu">Learning Suite</a></li>
+        	<li><a href="http://amazon.com">Amazon</a></li>
+        	<li><a href="http://my.byu.edu">myBYU</a></li>
+        	<li> <br>+ add link</li>
+        </ul>
+
+
+
 	</div>
-	<div class="second">
-			<div class="month">
+	<div class="center-top"><h1>Hey Good Lookin'</h1>
+
+
+
+	</div>
+	<div class="top-right">
+		<p id="date">date</p>
+		<body onload="updateClock(); setInterval('updateClock()',1000)">
+
+
+
+	</div>
+	<div class="center">
+		<div class="month">
 				<ul>
 				<li id="month" style="text-align:center">August
       			<span id="year" style="font-size:18px">2016</span>
@@ -80,7 +105,6 @@
 
 		<script>
 			var date = new Date();
-
 			/*document.getElementById("date").innerHTML = date.getHours() + ":" + date.getMinutes();*/
 			//updateClock();
 			/*function updateClock() {
@@ -90,7 +114,6 @@
 			    //setTimeout(updateClock, 1000);
 			}*/
 			updateClock(); // initial call
-
 			document.getElementById("0").innerHTML = date.getDate()-3;
 			document.getElementById("1").innerHTML = date.getDate()-2;
 			document.getElementById("2").innerHTML = date.getDate()-1;
@@ -99,9 +122,7 @@
 			document.getElementById("4").innerHTML = date.getDate()+1;
 			document.getElementById("5").innerHTML = date.getDate()+2;
 			document.getElementById("6").innerHTML = date.getDate()+3;
-
 			var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Mon","Tue","Wed"];
-
 			if (date.getDay() == 0) {
 				document.getElementById("00").innerHTML = days[4];
 				document.getElementById("01").innerHTML = days[5];
@@ -124,14 +145,47 @@
 			document.getElementById("04").innerHTML = days[date.getDay()+1];
 			document.getElementById("05").innerHTML = days[date.getDay()+2];
 			document.getElementById("06").innerHTML = days[date.getDay()+3];
-
 			var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 			document.getElementById("month").innerHTML = months[date.getMonth()] + " " + date.getFullYear();
 		</script>
+
+
 	</div>
-	<div class="third">third
-	//This is everything for the toggle background/selecting a URL
-		Change Background:
+	<div class="right-center">To-Do:
+
+		 <form>
+	     	   <input type="text" class="form-control" placeholder="Task" id="text_task">
+		   <button type="submit" id="btn_add_task" class="btn btn-primary">Add</button>
+		</form>           
+		     
+		<ul id = "list_tasks">      
+		</ul> 
+
+		<script type="text/javascript">
+			function $(element) {
+				return document.getElementById(element);
+			}
+			var taskSubmit = $('btn_add_task');
+			var taskBox = $('text_task');
+			var taskList = $('list_tasks');
+			taskSubmit.addEventListener('click', function(e) {
+				e.preventDefault();
+				var task = taskBox.value.trim();
+				var newLI = document.createElement('li');
+				newLI.appendChild(document.createTextNode(task));
+				taskList.appendChild(newLI);
+			    
+			    taskBox.value = '';
+			}, false);
+		</script>
+
+	</div>
+	<div class="center-bottom">The best preparation for tomorrow is doing your best today.
+		<br><i>H. Jackson Brown, Jr.</i>
+
+	</div>
+	<div class="bottom-right">
+		
 		<script type="text/javascript">
 			function changebackground(){
 		    	var url = document.getElementById('bgchanger').value;
@@ -141,9 +195,8 @@
 		    		document.getElementsByTagName('body')[0].style.backgroundImage = "url('" + url + "')";
 		    	}
 			};
-
 			function setbackground() {
-				var urls = ["http://67.media.tumblr.com/d1eec41eae5d96c55c95d6214c9168c8/tumblr_ng93g0lPzV1ttq3fbo2_1280.jpg","http://i.imgur.com/BG02dnj.jpg","http://www.zayende.com/images/resimler/IMG-20151104-WA0005.jpg","https://iso.500px.com/wp-content/uploads/2015/10/thispop_cover.jpeg"];
+				var urls = ["http://67.media.tumblr.com/d1eec41eae5d96c55c95d6214c9168c8/tumblr_ng93g0lPzV1ttq3fbo2_1280.jpg","http://i.imgur.com/BG02dnj.jpg","http://www.zayende.com/images/resimler/IMG-20151104-WA0005.jpg","https://iso.500px.com/wp-content/uploads/2015/10/thispop_cover.jpeg","http://farzinphoto.com/wp-content/uploads/2014/04/8V7A0037_HDR.jpg"];
 				var currentURL_long = document.getElementsByTagName('body')[0].style.backgroundImage;
 				var currentURL = currentURL_long.substring(5, currentURL_long.length-2);
 				if(currentURL == urls[0]) {
@@ -152,38 +205,22 @@
 					document.getElementsByTagName('body')[0].style.backgroundImage = "url(" + urls[2] + ")";
 				} else if (currentURL == urls[2]) {
 					document.getElementsByTagName('body')[0].style.backgroundImage = "url(" + urls[3] + ")";
+				} else if (currentURL == urls[3]) {
+					document.getElementsByTagName('body')[0].style.backgroundImage = "url(" + urls[4] + ")";
 				} else {
 					document.getElementsByTagName('body')[0].style.backgroundImage = "url(" + urls[0] + ")";
 				}
 			};
 		</script>
 
-		<input type="text" id="bgchanger" placeholder="Change Background Add URL" />
-		<input type="button" onclick="changebackground();" value="Change!" />
-		<input type="button" onclick="setbackground();" value="Toggle!" />
-		//
-	</div>
-	<div class="fourth">fourth
+		Background Image Changer
+		<input type="text" id="bgchanger" placeholder="New Photo URL Here" />
+		<input type="button" onclick="changebackground();" value="Apply Photo" />
+		<br>
+		<input type="button" onclick="setbackground();" value="Toggle Existing Photos" />
 		
 	</div>
-	<div class="fifth">fifth
-		<div id="myDIV" class="header">
-		<h2>My To Do List</h2>
-		<input type="text" id="myInput" placeholder="Title...">
-		<span onclick="newElement()" class="addBtn">Add</span>
-		</div>
-		<ul id="myUL">
-		  <li>Hit the gym</li>
-		  <li class="checked">Pay bills</li>
-		  <li>Meet George</li>
-		  <li>Buy eggs</li>
-		  <li>Read a book</li>
-		  <li>Organize office</li>
-		</ul>
-    </div>
-    <div class="sixth">sixth
-    	
-	</div>
+	
 </div>
 </body>
 </html>
