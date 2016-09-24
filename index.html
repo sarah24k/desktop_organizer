@@ -5,7 +5,7 @@
 	</title>
 
 <link rel="stylesheet" href="main.css">
-
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script>
 	function updateClock() {
 	    var time = new Date();
@@ -37,7 +37,7 @@
 </head>
 
 
-<body>
+<body ng-app="myApp" ng-controller="todoCtrl">
 <header>
 
         <nav>
@@ -51,139 +51,187 @@
 <div class="container">
 
 	<div class="left-sidebar"><b>Favorites</b>
-		<ul>
+		<ul id="list_links">
         	<li><a href="http://www.google.com" >Google</a></li>
         	<li><a href="http://www.facebook.com">Facebook</a></li>
         	<li><a href="http://learningsuite.byu.edu">Learning Suite</a></li>
         	<li><a href="http://amazon.com">Amazon</a></li>
         	<li><a href="http://my.byu.edu">myBYU</a></li>
-        	<li> <br>+ add link</li>
         </ul>
+    	<input type="text" id="link_title" class="btn_link" placeholder="title">
+    	<input type="text" id="link_url" class="btn_link" placeholder="url">
+    	<button type="submit" id="btn_add_link" class="btn">add link</button>
+    	<!--<button type="submit" id="btn_submit_link" class="btn_link">Submit</button>
+    	
+    		//document.getElementById('btn_add_link').onclick = function() {
+				//	document.getElementsByClassName('btn_link')[0].style.display = "block";
 
+			//}​;-->
 
-
-	</div>
-	<div class="center-top"><h1>Hey Good Lookin'</h1>
-
-
-
-	</div>
-	<div class="top-right">
-		<p id="date">date</p>
-		<body onload="updateClock(); setInterval('updateClock()',1000)">
-
-
-
-	</div>
-	<div class="center">
-		<div class="month">
-				<ul>
-				<li id="month" style="text-align:center">August
-      			<span id="year" style="font-size:18px">2016</span>
-      			</li>
-    			</ul>
-			</div>
-			<ul class="weekdays">
-				<li id="00">Mo</li>
-				<li id="01">Tu</li>
- 				<li id="02">We</li>
-  				<li id="03">Th</li>
-				<li id="04">Fr</li>
-				<li id="05">Sa</li>
-				<li id="06">Su</li>
-			</ul>
-
-			<ul class="days">
-				<li id="0">1</li>
-				<li id="1">2</li>
-				<li id="2">3</li>
-				<li id="3"><span id="active">4</span></li>
-				<li id="4">5</li>
-				<li id="5">6</li>
-				<li id="6">7</li>
-			</ul>
-
-		<script>
-			var date = new Date();
-			/*document.getElementById("date").innerHTML = date.getHours() + ":" + date.getMinutes();*/
-			//updateClock();
-			/*function updateClock() {
-			    var time = date.getHours() + ':' + date.getMinutes();
-			    document.getElementById("date").innerHTML = time;
-			    // call this function again in 1000ms
-			    //setTimeout(updateClock, 1000);
-			}*/
-			updateClock(); // initial call
-			document.getElementById("0").innerHTML = date.getDate()-3;
-			document.getElementById("1").innerHTML = date.getDate()-2;
-			document.getElementById("2").innerHTML = date.getDate()-1;
-			//document.getElementById("3").innerHTML = date.getDate();
-			document.getElementById("active").innerHTML = date.getDate();
-			document.getElementById("4").innerHTML = date.getDate()+1;
-			document.getElementById("5").innerHTML = date.getDate()+2;
-			document.getElementById("6").innerHTML = date.getDate()+3;
-			var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Mon","Tue","Wed"];
-			if (date.getDay() == 0) {
-				document.getElementById("00").innerHTML = days[4];
-				document.getElementById("01").innerHTML = days[5];
-				document.getElementById("02").innerHTML = days[6];
-			} else if (date.getDay() == 1) {
-				document.getElementById("00").innerHTML = days[5];
-				document.getElementById("01").innerHTML = days[6];
-				document.getElementById("02").innerHTML = days[0];
-			} else if (date.getDay() == 2) {
-				document.getElementById("00").innerHTML = days[6];
-				document.getElementById("01").innerHTML = days[0];
-				document.getElementById("02").innerHTML = days[1];
-			} else {
-				document.getElementById("00").innerHTML = days[date.getDay()-3];
-				document.getElementById("01").innerHTML = days[date.getDay()-2];
-				document.getElementById("02").innerHTML = days[date.getDay()-1];
-			}
-			document.getElementById("03").innerHTML = days[date.getDay()];
-			//document.getElementsByClassName("active").innerHTML = days[date.getDay()];
-			document.getElementById("04").innerHTML = days[date.getDay()+1];
-			document.getElementById("05").innerHTML = days[date.getDay()+2];
-			document.getElementById("06").innerHTML = days[date.getDay()+3];
-			var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-			document.getElementById("month").innerHTML = months[date.getMonth()] + " " + date.getFullYear();
-		</script>
-
-
-	</div>
-	<div class="right-center">To-Do:
-
-		 <form>
-	     	   <input type="text" class="form-control" placeholder="Task" id="text_task">
-		   <button type="submit" id="btn_add_task" class="btn btn-primary">Add</button>
-		</form>           
-		     
-		<ul id = "list_tasks">      
-		</ul> 
 
 		<script type="text/javascript">
 			function $(element) {
 				return document.getElementById(element);
 			}
-			var taskSubmit = $('btn_add_task');
-			var taskBox = $('text_task');
-			var taskList = $('list_tasks');
-			taskSubmit.addEventListener('click', function(e) {
+			var linkSubmit = $('btn_add_link');
+			var linkURL = $('link_url');
+			var linkTitle = $('link_title');
+			var linkList = $('list_links');
+
+
+			document.getElementById("link_url")
+			    .addEventListener("keyup", function(event) {
+			    event.preventDefault();
+			    if (event.keyCode == 13) {
+			        document.getElementById("btn_add_link").click();
+			    }
+			});
+
+			linkSubmit.addEventListener('click', function(e) {
 				e.preventDefault();
-				var task = taskBox.value.trim();
+				var link = linkURL.value.trim();
+				if (link.substring(0,3) != "www" && link.substring(0,4) != "http") {
+					link = "http://www." + link;
+				} else if (link.substring(0,4) != "http") {
+					link = "http://" + link;
+				}
+				var title = linkTitle.value.trim();
 				var newLI = document.createElement('li');
-				newLI.appendChild(document.createTextNode(task));
-				taskList.appendChild(newLI);
+				var a = document.createElement('a');
+				newLI.appendChild(a);
+				a.appendChild(document.createTextNode(title));
+				a.title = title;
+				a.href = link;
+
+				linkList.appendChild(newLI);
 			    
-			    taskBox.value = '';
+			    linkURL.value = '';
+			    linkTitle.value = '';
 			}, false);
 		</script>
 
 	</div>
-	<div class="center-bottom">The best preparation for tomorrow is doing your best today.
-		<br><i>H. Jackson Brown, Jr.</i>
+
+	<div class="center-top"><h1>Hey Good Lookin'</h1>
 
 	</div>
+
+	<div class="top-right">
+		<p id="date">date</p>
+		<body onload="updateClock(); setInterval('updateClock()',1000)">
+	</div>
+
+	<div class="center">
+		<div class="month">
+			<ul>
+				<li id="month" style="text-align:center">August
+      			<span id="year" style="font-size:18px">2016</span>
+      			</li>
+    		</ul>
+		</div>
+		<ul class="weekdays">
+			<li id="00">Mo</li>
+			<li id="01">Tu</li>
+			<li id="02">We</li>
+			<li id="03">Th</li>
+			<li id="04">Fr</li>
+			<li id="05">Sa</li>
+			<li id="06">Su</li>
+		</ul>
+
+		<ul class="days">
+			<li id="0"><span id="active">1</span></li>
+			<li id="1">2</li>
+			<li id="2">3</li>
+			<li id="3">4</li>
+			<li id="4">5</li>
+			<li id="5">6</li>
+			<li id="6">7</li>
+		</ul>
+
+		<ul class ="icons">
+			<li id="ic0"><img src="http://icons.veryicon.com/ico/System/Icons8%20Metro%20Style/Weather%20Rain.ico" alt="cloudy" class="icon"></li>
+			<li id="ic1"><img src="http://icons.veryicon.com/ico/System/Icons8%20Metro%20Style/Weather%20Rain.ico" alt="cloudy" class="icon"></li>
+			<li id="ic2"><img src="http://icons.veryicon.com/ico/System/Icons8%20Metro%20Style/Weather%20Rain.ico" alt="cloudy" class="icon"></li>
+			<li id="ic3"><img src="http://icons.veryicon.com/ico/System/Icons8%20Metro%20Style/Weather%20Rain.ico" alt="cloudy" class="icon"></li>
+			<li id="ic4"><img src="http://icons.veryicon.com/ico/System/Icons8%20Metro%20Style/Weather%20Rain.ico" alt="cloudy" class="icon"></li>
+			<li id="ic5"><img src="http://icons.veryicon.com/ico/System/Icons8%20Metro%20Style/Weather%20Rain.ico" alt="cloudy" class="icon"></li>
+			<li id="ic6"><img src="http://icons.veryicon.com/ico/System/Icons8%20Metro%20Style/Weather%20Rain.ico" alt="cloudy" class="icon"></li>
+		</ul>
+
+		<ul class="weather_info">
+			<li id="info0" class="info">Cloudy and this is super long test :) haha great</li>
+			<li id="info1" class="info">Cloudy</li>
+			<li id="info2" class="info">Cloudy</li>
+			<li id="info3" class="info">Cloudy</li>
+			<li id="info4" class="info">Cloudy</li>
+			<li id="info5" class="info">Cloudy</li>
+			<li id="info6" class="info">Cloudy</li>
+		</ul>
+
+		<script>
+			var date = new Date();
+			updateClock(); // initial call
+			document.getElementById("active").innerHTML = date.getDate();
+			document.getElementById("1").innerHTML = date.getDate()+1;
+			document.getElementById("2").innerHTML = date.getDate()+2;
+			document.getElementById("3").innerHTML = date.getDate()+3;
+			document.getElementById("4").innerHTML = date.getDate()+4;
+			document.getElementById("5").innerHTML = date.getDate()+5;
+			document.getElementById("6").innerHTML = date.getDate()+6;
+			var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Mon","Tue","Wed","Thu","Fri"];
+			document.getElementById("00").innerHTML = days[date.getDay()];
+			document.getElementById("01").innerHTML = days[date.getDay()+1];
+			document.getElementById("02").innerHTML = days[date.getDay()+2];
+			document.getElementById("03").innerHTML = days[date.getDay()+3];
+			document.getElementById("04").innerHTML = days[date.getDay()+4];
+			document.getElementById("05").innerHTML = days[date.getDay()+5];
+			document.getElementById("06").innerHTML = days[date.getDay()+6];
+			
+			var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+			document.getElementById("month").innerHTML = months[date.getMonth()] + " " + date.getFullYear();
+		</script>
+
+	</div>
+
+	<div class="right-center">To-Do:
+
+		 <form ng-submit="todoAdd()">
+			<input type="text" class="form-control" ng-model="task" placeholder="task">
+			<button type="submit" id="btn_add_task" class="btn btn-primary">add</button>
+		</form>           
+		     
+		<ul id = "list_tasks"></ul> 
+		<div ng-repeat="x in todoList">
+		    <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
+		</div>
+		<p><button ng-click="remove()">remove marked</button></p>
+		<script>
+		var app = angular.module('myApp', []);
+		app.controller('todoCtrl', function($scope) {
+		    $scope.todoList = [{todoText:'Work hard, play hard', done:false}];
+
+		    $scope.todoAdd = function() {
+		    	var textstuff = $scope.task;
+		        $scope.todoList.push({todoText:textstuff, done:false});
+		        $scope.task = "";
+		    };
+
+		    $scope.remove = function() {
+		        var oldList = $scope.todoList;
+		        $scope.todoList = [];
+		        angular.forEach(oldList, function(x) {
+		            if (!x.done) $scope.todoList.push(x);
+		        });
+		    };
+		});
+		</script>
+	</div>
+
+	<div class="center-bottom">The best preparation for tomorrow is doing your best today.
+		<br><i>H. Jackson Brown, Jr.</i>
+	</div>
+
 	<div class="bottom-right">
 		
 		<script type="text/javascript">
@@ -196,7 +244,7 @@
 		    	}
 			};
 			function setbackground() {
-				var urls = ["http://67.media.tumblr.com/d1eec41eae5d96c55c95d6214c9168c8/tumblr_ng93g0lPzV1ttq3fbo2_1280.jpg","http://i.imgur.com/BG02dnj.jpg","http://www.zayende.com/images/resimler/IMG-20151104-WA0005.jpg","https://iso.500px.com/wp-content/uploads/2015/10/thispop_cover.jpeg","http://farzinphoto.com/wp-content/uploads/2014/04/8V7A0037_HDR.jpg"];
+				var urls = ["http://67.media.tumblr.com/d1eec41eae5d96c55c95d6214c9168c8/tumblr_ng93g0lPzV1ttq3fbo2_1280.jpg","http://i.imgur.com/BG02dnj.jpg","https://iso.500px.com/wp-content/uploads/2015/10/thispop_cover.jpeg","http://www.zayende.com/images/resimler/IMG-20151104-WA0005.jpg"];
 				var currentURL_long = document.getElementsByTagName('body')[0].style.backgroundImage;
 				var currentURL = currentURL_long.substring(5, currentURL_long.length-2);
 				if(currentURL == urls[0]) {
@@ -205,19 +253,17 @@
 					document.getElementsByTagName('body')[0].style.backgroundImage = "url(" + urls[2] + ")";
 				} else if (currentURL == urls[2]) {
 					document.getElementsByTagName('body')[0].style.backgroundImage = "url(" + urls[3] + ")";
-				} else if (currentURL == urls[3]) {
-					document.getElementsByTagName('body')[0].style.backgroundImage = "url(" + urls[4] + ")";
 				} else {
 					document.getElementsByTagName('body')[0].style.backgroundImage = "url(" + urls[0] + ")";
 				}
 			};
 		</script>
 
-		Background Image Changer
-		<input type="text" id="bgchanger" placeholder="New Photo URL Here" />
-		<input type="button" onclick="changebackground();" value="Apply Photo" />
+		Background Changer
+		<input type="text" id="bgchanger" placeholder="new photo URL here" />
+		<input type="button" onclick="changebackground();" value="apply custom background" />
 		<br>
-		<input type="button" onclick="setbackground();" value="Toggle Existing Photos" />
+		<input type="button" onclick="setbackground();" value="change background" />
 		
 	</div>
 	
