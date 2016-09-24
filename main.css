@@ -4,7 +4,7 @@ body{
         width:100%;
         margin:0;
         padding:0;
-        background: url("http://farzinphoto.com/wp-content/uploads/2014/04/8V7A0037_HDR.jpg") no-repeat center center fixed;
+        background: url("http://www.zayende.com/images/resimler/IMG-20151104-WA0005.jpg") no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -64,8 +64,6 @@ nav a,nav a:visited{
 nav a.selected, nav a:hover{
         color:#000;
 }
-
-
 
 a{
         text-decoration: none;
@@ -170,7 +168,7 @@ html, body, .container
 .center-bottom{
     color:white;
     position:fixed;
-    bottom:0;
+    bottom:-30px;
     left:150;
     right:150;
     text-align: center;
@@ -186,9 +184,7 @@ html, body, .container
     height:130px;
     color: white;
 
-
 }
-
 
 
 /****** CALENDAR STYLING ******/
@@ -213,6 +209,7 @@ ul{
     font-size: 20px;
     text-transform: uppercase;
     letter-spacing: 3px;
+    padding: 10px;
     background-color:rgba(0, 0, 0, 0.5);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px
@@ -238,21 +235,43 @@ ul{
     /*background: #eee;*/
     background-color:rgba(0, 0, 0, 0.5);
     margin: 0;
+    
+}
+
+.icons {
+    padding: 0;
+    padding-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+
+.weather_info {
+    padding: 0;
+    padding-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 0;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
 
-.days li {
+.icon {
+    height: 40px;
+    width: 40px;
+}
+
+
+.days li, .icons li, .weather_info li {
     list-style-type: none;
     display: inline-block;
     width: 12%;
-    height: 100px;
+    height: 20px;
     text-align: center;
     margin-bottom: 5px;
     font-size:14px;
     color: white;
-
 }
+
+
 
 .days li #active {
     padding: 5px;
