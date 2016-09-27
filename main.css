@@ -131,7 +131,7 @@ html, body, .container
 
 .top-right{
     color: white;
-    font-size: 25;
+    font-size: 28;
     position: absolute;
     top:0;
     right:0;
@@ -161,8 +161,6 @@ html, body, .container
     width: 170px;
     height: auto;
     color: white;
-
-
 }
 
 .center-bottom{
@@ -183,7 +181,6 @@ html, body, .container
     width:170px;
     height:130px;
     color: white;
-
 }
 
 
@@ -210,7 +207,7 @@ ul{
     text-transform: uppercase;
     letter-spacing: 3px;
     padding: 10px;
-    background-color:rgba(0, 0, 0, 0.5);
+    background-color:rgba(0, 0, 0, 0.6);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px
 }
@@ -219,7 +216,7 @@ ul{
     margin: 0;
     padding: 10px 0;
     /*background-color: #ddd;*/
-    background-color:rgba(0, 0, 0, 0.5);
+    background-color:rgba(0, 0, 0, 0.6);
     border-bottom-width: 3px;
 }
 
@@ -233,7 +230,7 @@ ul{
 .days {
     padding: 10px 0;
     /*background: #eee;*/
-    background-color:rgba(0, 0, 0, 0.5);
+    background-color:rgba(0, 0, 0, 0.6);
     margin: 0;
     
 }
@@ -241,14 +238,14 @@ ul{
 .icons {
     padding: 0;
     padding-bottom: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     margin: 0;
 }
 
 .weather_info {
     padding: 0;
     padding-bottom: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     margin: 0;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -275,7 +272,7 @@ ul{
 
 .days li #active {
     padding: 5px;
-    background: #1abc9c;
+    background: midnightblue;
     color: white !important;
     width: 24%;
 }
