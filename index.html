@@ -28,7 +28,7 @@
 	    	minutes = time.getMinutes();
 	    }
 	    var timeOfDay = "AM";
-	    if (time.getHours() > 12) {
+	    if (time.getHours() >= 12) {
 	    	timeOfDay = "PM";
 	    } else {
 	    	timeOfDay = "AM";
@@ -71,7 +71,6 @@
     	
     		//document.getElementById('btn_add_link').onclick = function() {
 				//	document.getElementsByClassName('btn_link')[0].style.display = "block";
-
 			//}​;-->
 
 
@@ -83,8 +82,6 @@
 			var linkURL = $('link_url');
 			var linkTitle = $('link_title');
 			var linkList = $('list_links');
-
-
 			document.getElementById("link_url")
 			    .addEventListener("keyup", function(event) {
 			    event.preventDefault();
@@ -92,7 +89,6 @@
 			        document.getElementById("btn_add_link").click();
 			    }
 			});
-
 			linkSubmit.addEventListener('click', function(e) {
 				e.preventDefault();
 				var link = linkURL.value.trim();
@@ -108,7 +104,6 @@
 				a.appendChild(document.createTextNode(title));
 				a.title = title;
 				a.href = link;
-
 				linkList.appendChild(newLI);
 			    
 			    linkURL.value = '';
@@ -216,13 +211,11 @@
 		var app = angular.module('myApp', []);
 		app.controller('todoCtrl', function($scope) {
 		    $scope.todoList = [{todoText:'Work hard, play hard', done:false}];
-
 		    $scope.todoAdd = function() {
 		    	var textstuff = $scope.task;
 		        $scope.todoList.push({todoText:textstuff, done:false});
 		        $scope.task = "";
 		    };
-
 		    $scope.remove = function() {
 		        var oldList = $scope.todoList;
 		        $scope.todoList = [];
@@ -241,7 +234,7 @@
 	<div class="bottom-right">
 		
 		<script type="text/javascript">
-			function changebackground(){
+			function setbackground(){
 		    	var url = document.getElementById('bgchanger').value;
 		    	if (url == "") {
 		    		document.getElementsByTagName('body')[0].style.backgroundImage = "url('https://drscdn.500px.org/photo/103960697/m%3D2048/f14d55eb0b30b9abe4f433f42b670767')";
@@ -249,10 +242,10 @@
 		    		document.getElementsByTagName('body')[0].style.backgroundImage = "url('" + url + "')";
 		    	}
 			};
-			function setbackground() {
+			function changebackground() {
 				var urls = ["http://67.media.tumblr.com/d1eec41eae5d96c55c95d6214c9168c8/tumblr_ng93g0lPzV1ttq3fbo2_1280.jpg","http://i.imgur.com/BG02dnj.jpg","https://iso.500px.com/wp-content/uploads/2015/10/thispop_cover.jpeg","http://www.zayende.com/images/resimler/IMG-20151104-WA0005.jpg"];
 				var currentURL_long = document.getElementsByTagName('body')[0].style.backgroundImage;
-				var currentURL = currentURL_long.substring(5, currentURL_long.length-2);
+				var currentURL = currentURL_long.substring(5, currentURL_long.length-2);;
 				if(currentURL == urls[0]) {
 					document.getElementsByTagName('body')[0].style.backgroundImage = "url(" + urls[1] + ")";
 				} else if (currentURL == urls[1]) {
@@ -267,9 +260,9 @@
 
 		Background Changer
 		<input type="text" id="bgchanger" placeholder="new photo URL here" />
-		<input type="button" onclick="changebackground();" value="apply custom background" />
+		<input type="button" onclick="setbackground();" value="apply custom background" />
 		<br>
-		<input type="button" onclick="setbackground();" value="change background" />
+		<input type="button" onclick="changebackground();" value="change background" />
 		
 	</div>
 	
@@ -314,7 +307,6 @@ $(document).ready(function() {
 		
 	
 });
-
 </script>
 
 </html>
